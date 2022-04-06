@@ -35,7 +35,7 @@ const CancelButton = styled.a.attrs({
     margin: 15px 15px 15px 5px;
 `
 
-class MoviesUpdate extends Component {
+class BooksUpdate extends Component {
     constructor(props) {
         super(props)
 
@@ -65,13 +65,13 @@ class MoviesUpdate extends Component {
         this.setState({ time })
     }
 
-    handleUpdateMovie = async () => {
+    handleUpdateBook = async () => {
         const { id, name, rating, time } = this.state
         const arrayTime = time.split('/')
         const payload = { name, rating, time: arrayTime }
 
-        await api.updateMovieById(id, payload).then(res => {
-            window.alert(`Movie updated successfully`)
+        await api.updateBookById(id, payload).then(res => {
+            window.alert(`Book updated successfully`)
             this.setState({
                 name: '',
                 rating: '',
@@ -82,12 +82,12 @@ class MoviesUpdate extends Component {
 
     componentDidMount = async () => {
         const { id } = this.state
-        const movie = await api.getMovieById(id)
+        const book = await api.getBookById(id)
 
         this.setState({
-            name: movie.data.data.name,
-            rating: movie.data.data.rating,
-            time: movie.data.data.time.join('/'),
+            name: book.data.data.name,
+            rating: book.data.data.rating,
+            time: book.data.data.time.join('/'),
         })
     }
 
@@ -95,7 +95,7 @@ class MoviesUpdate extends Component {
         const { name, rating, time } = this.state
         return (
             <Wrapper>
-                <Title>Create Movie</Title>
+                <Title>Create Book</Title>
 
                 <Label>Name: </Label>
                 <InputText
@@ -123,11 +123,11 @@ class MoviesUpdate extends Component {
                     onChange={this.handleChangeInputTime}
                 />
 
-                <Button onClick={this.handleUpdateMovie}>Update Movie</Button>
-                <CancelButton href={'/movies/list'}>Cancel</CancelButton>
+                <Button onClick={this.handleUpdateBook}>Update Book</Button>
+                <CancelButton href={'/books/list'}>Cancel</CancelButton>
             </Wrapper>
         )
     }
 }
 
-export default MoviesUpdate
+export default BooksUpdate
