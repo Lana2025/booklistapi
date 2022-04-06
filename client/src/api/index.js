@@ -4,18 +4,18 @@ const api = axios.create({
     baseURL: 'https://booklistapi.herokuapp.com',
 })
 
-export const insertMovie = payload => api.post(`/booklist/create`, payload)
-export const getAllMovies = () => api.get(`/booklist`)
-export const updateMovieById = (id, payload) => api.put(`/booklist/${id}`, payload)
-export const deleteMovieById = id => api.delete(`/booklist/${id}`)
-export const getMovieById = id => api.get(`/booklist/${id}`)
+export const insertBook = payload => api.post(`/booklist/create`, payload)
+export const getAllBooks = () => api.get(`/booklist`)
+export const updateBookById = (id, payload) => api.put(`/booklist/${id}`, payload)
+export const deleteBookById = id => api.delete(`/booklist/${id}`)
+export const getBookeById = id => api.get(`/booklist/${id}`)
 
 const apis = {
-    insertMovie,
-    getAllMovies,
-    updateMovieById,
-    deleteMovieById,
-    getMovieById,
+    insertBook,
+    getAllBooks,
+    updateBookById,
+    deleteBookById,
+    getBookById,
 }
 
 export default apis
