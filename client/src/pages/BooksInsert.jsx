@@ -35,7 +35,7 @@ const CancelButton = styled.a.attrs({
     margin: 15px 15px 15px 5px;
 `
 
-class MoviesInsert extends Component {
+class BooksInsert extends Component {
     constructor(props) {
         super(props)
 
@@ -64,7 +64,7 @@ class MoviesInsert extends Component {
         this.setState({ time })
     }
 
-    handleIncludeMovie = async () => {
+    handleIncludeBook = async () => {
         const { name, rating, time } = this.state
         const arrayTime = time.split('/')
         const payload = { name, rating, time: arrayTime }
@@ -83,7 +83,7 @@ class MoviesInsert extends Component {
         const { name, rating, time } = this.state
         return (
             <Wrapper>
-                <Title>Create Movie</Title>
+                <Title>Create Book</Title>
 
                 <Label>Name: </Label>
                 <InputText
@@ -111,11 +111,11 @@ class MoviesInsert extends Component {
                     onChange={this.handleChangeInputTime}
                 />
 
-                <Button onClick={this.handleIncludeMovie}>Add Movie</Button>
+                <Button onClick={this.handleIncludeMovie}>Add Book</Button>
                 <CancelButton href={'/movies/list'}>Cancel</CancelButton>
             </Wrapper>
         )
     }
 }
 
-export default MoviesInsert
+export default BooksInsert
