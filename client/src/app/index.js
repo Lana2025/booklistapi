@@ -17,7 +17,7 @@ function App() {
                 <Route
                     path="/books/update/:id"
                     exact
-                    component={BookssUpdate}
+                    component={BooksUpdate}
                 />
              </Routes>
              </BrowserRouter>
