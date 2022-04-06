@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import ReactTable from 'react-table'
+import Table from 'react-bootstrap/Table';
 import api from '../api'
 
 import styled from 'styled-components'
 
-import 'react-table/react-table.css'
+
 
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
@@ -20,11 +20,11 @@ const Delete = styled.div`
     cursor: pointer;
 `
 
-class UpdateMovie extends Component {
+class UpdateBook extends Component {
     updateUser = event => {
         event.preventDefault()
 
-        window.location.href = `/movies/update/${this.props.id}`
+        window.location.href = `/book/update/${this.props.id}`
     }
 
     render() {
@@ -32,16 +32,16 @@ class UpdateMovie extends Component {
     }
 }
 
-class DeleteMovie extends Component {
+class DeleteBook extends Component {
     deleteUser = event => {
         event.preventDefault()
 
         if (
             window.confirm(
-                `Do tou want to delete the movie ${this.props.id} permanently?`,
+                `Do tou want to delete the book ${this.props.id} permanently?`,
             )
         ) {
-            api.deleteMovieById(this.props.id)
+            api.deleteBookeById(this.props.id)
             window.location.reload()
         }
     }
@@ -51,7 +51,7 @@ class DeleteMovie extends Component {
     }
 }
 
-class MoviesList extends Component {
+class BooksList extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -64,17 +64,17 @@ class MoviesList extends Component {
     componentDidMount = async () => {
         this.setState({ isLoading: true })
 
-        await api.getAllMovies().then(movies => {
+        await api.getAllMovies().then(books => {
             this.setState({
-                movies: movies.data.data,
+                books: books.data.data,
                 isLoading: false,
             })
         })
     }
 
     render() {
-        const { movies, isLoading } = this.state
-        console.log('TCL: MoviesList -> render -> movies', movies)
+        const { books, isLoading } = this.state
+        console.log('TCL: BooksList -> render -> books', books)
 
         const columns = [
             {
@@ -103,7 +103,7 @@ class MoviesList extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            <DeleteMovie id={props.original._id} />
+                            <DeleteBook id={props.original._id} />
                         </span>
                     )
                 },
@@ -114,7 +114,7 @@ class MoviesList extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            <UpdateMovie id={props.original._id} />
+                            <UpdateBook id={props.original._id} />
                         </span>
                     )
                 },
@@ -122,15 +122,15 @@ class MoviesList extends Component {
         ]
 
         let showTable = true
-        if (!movies.length) {
+        if (!books.length) {
             showTable = false
         }
 
         return (
             <Wrapper>
                 {showTable && (
-                    <ReactTable
-                        data={movies}
+                    <Table
+                        data={books}
                         columns={columns}
                         loading={isLoading}
                         defaultPageSize={10}
@@ -143,4 +143,4 @@ class MoviesList extends Component {
     }
 }
 
-export default MoviesList
+export default BooksList
