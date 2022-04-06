@@ -1,8 +1,8 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import { NavBar } from '../components'
-import { MoviesList, MoviesInsert, MoviesUpdate } from '../pages'
+import { BooksList, BooksInsert, BooksUpdate } from '../pages'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -11,13 +11,13 @@ function App() {
       <BrowserRouter>
       <NavBar />
       <Routes>
-      <Route exact path="/movies/list" element={<MoviesList />}/>
-      <Route exact path="/movies/create" element={<MoviesInsert />}/>
+      <Route exact path="/books/list" element={<BooksList />}/>
+      <Route exact path="/books/create" element={<BooksInsert />}/>
                 
                 <Route
-                    path="/movies/update/:id"
+                    path="/books/update/:id"
                     exact
-                    component={MoviesUpdate}
+                    component={BookssUpdate}
                 />
              </Routes>
              </BrowserRouter>
